@@ -27,7 +27,7 @@ const theme = extendTheme({ config, colors })
 
 const router = createHashRouter([{
   path: '*',
-  element: <App />
+  element: <App />,
 }])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
