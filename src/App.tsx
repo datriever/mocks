@@ -1,7 +1,7 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Navigate, NavLink, useRoutes } from 'react-router-dom'
 const Scraper = lazy(() => import('@scraper/Scraper'));
-import { Button, VStack } from '@chakra-ui/react'
+import { Button, Center, Spinner, VStack } from '@chakra-ui/react'
 
 export function App() {
 
@@ -11,7 +11,7 @@ export function App() {
     </VStack>
   )
 
-  return useRoutes([
+  const routes = useRoutes([
     {
       path: '',
       element: main
@@ -25,6 +25,12 @@ export function App() {
       element: <Navigate to='..' />
     }
   ])
+
+  return (
+    <Suspense fallback={<Center h='100vh' w='100vw'><Spinner /></Center>}>
+      {routes}
+    </Suspense>
+  )
 }
 
 export default App
