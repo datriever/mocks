@@ -1,8 +1,9 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.js'
 import { RouterProvider, createHashRouter } from 'react-router-dom'
-import { ChakraProvider, ColorModeScript, ThemeConfig, extendTheme } from '@chakra-ui/react'
+import { Center, ChakraProvider, ColorModeScript, Spinner, ThemeConfig, extendTheme } from '@chakra-ui/react'
 import './index.css'
+import { Suspense } from 'react'
 
 const config: ThemeConfig = {
   initialColorMode: import.meta.env.PROD ? 'system' : 'dark',
@@ -27,7 +28,11 @@ const theme = extendTheme({ config, colors })
 
 const router = createHashRouter([{
   path: '*',
-  element: <App />,
+  element: (
+    <Suspense fallback={<Center h='100vh' w='100vw'><Spinner /></Center>}>
+      <App />
+    </Suspense>
+  ),
 }])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

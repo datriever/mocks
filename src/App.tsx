@@ -1,36 +1,12 @@
-import { lazy, Suspense } from 'react';
-import { Navigate, NavLink, useRoutes } from 'react-router-dom'
-const Scraper = lazy(() => import('@scraper/Scraper'));
-import { Button, Center, Spinner, VStack } from '@chakra-ui/react'
+import { HStack } from '@chakra-ui/react'
+import Sidebar from './builder/Sidebar'
+import Main from './builder/Main'
 
-export function App() {
-
-  const main = (
-    <VStack h='100vh' w='100vw' align='center' justify='center'>
-      <Button as={NavLink} to='scraper'>Scraper</Button>
-    </VStack>
-  )
-
-  const routes = useRoutes([
-    {
-      path: '',
-      element: main
-    },
-    {
-      path: '/scraper',
-      element: <Scraper />
-    },
-    {
-      path: '*',
-      element: <Navigate to='..' />
-    }
-  ])
-
+export default function AppBuilder() {
   return (
-    <Suspense fallback={<Center h='100vh' w='100vw'><Spinner /></Center>}>
-      {routes}
-    </Suspense>
+    <HStack spacing={4} h="100vh" p={4}>
+      <Sidebar />
+      <Main />      
+    </HStack>
   )
 }
-
-export default App
