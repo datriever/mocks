@@ -1,4 +1,4 @@
-import { Box, Heading, HStack, VStack } from '@chakra-ui/react'
+import { HStack, VStack } from '@chakra-ui/react'
 import { chat, history } from './controller'
 import Chat from './components/chat/Chat'
 import Table from './components/table/Table'
