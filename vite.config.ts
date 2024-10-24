@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
   ],
-  base: '/mocks/', // change if you're deploying to github pages
+  base: '/mocks',
 })
